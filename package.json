@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "alertify": "^0.3.0",
+    "bootstrap": "^5.1.3",
     "core-js": "^3.6.5",
     "linq": "^4.0.0",
     "sprintf-js": "^1.1.2",
