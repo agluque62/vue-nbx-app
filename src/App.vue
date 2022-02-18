@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="row bsep" >
-      <div class="col-md-12"><Header></Header></div>
+      <div class="col-md-12"><Header title="Ulises V 5000i. NBX" :user="GetUser"></Header></div>
     </div>
     <div class="row bsep">
       <div class="col-md-2 menu">
@@ -27,7 +27,7 @@
       <div class="col-md-12"><EventsList></EventsList></div>
     </div>
     <div class="row">
-      <div class="col-md-12"><Pie></Pie></div>
+      <div class="col-md-12"><Pie :version="Version" :status="Status"></Pie></div>
     </div>
   </div>
   <!-- <div id="nav">
@@ -50,6 +50,13 @@ export default ({
     EventsList,
     Pie
   },
+  data(){
+    return {
+      UserId: "---",
+      Version:"???",
+      Status:"---"
+    }
+  },
   computed:{
     ActivePageText(){
       var txt=this.$route.fullPath;
@@ -59,7 +66,17 @@ export default ({
       else if (txt=='/phone') return "Parametros de Telefonía";
       else if (txt=='/about') return "Sobre esta Aplicacion";
       return txt;
+    },
+    GetUser(){
+      return this.UserId;
     }
+  },
+mounted(){
+    /** TODO. Obtener el usuario, status y Version y pasarlo a this.UserId */
+    // setInterval(() => {
+    //         this.UserId += (tcount)++;
+    //       }, 1000);
+
   }
 })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="row cabecera">
     <div class="col-md-2 logo"></div>
-    <div class="col-md-8 title"><span>Ulises V 5000i. NBX</span></div>
+    <div class="col-md-8 title"><span>{{title}}</span></div>
     <div class="col-md-2 fecha">
       <span>{{date}}</span>
       <div>User: <span>{{user}}</span></div>
@@ -16,18 +16,17 @@ export default ({
   data(){
     return {
         date: undefined,
-        user: undefined,
         timer: undefined
     }
   },
+  props:[
+    'title',
+    'user'
+  ],
   methods:{
-      setUser(usr){
-          this.user=usr;
-      }
   },
   mounted(){
       this.date=moment().format('DD-MM-YY, HH:mm:ss');
-      this.user = "N.I";
       this.timer = setInterval(() => {
         this.date = moment().format('DD-MM-YY, HH:mm:ss');
       }, 1000);
