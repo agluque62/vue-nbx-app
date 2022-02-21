@@ -41,6 +41,7 @@
 import Header from '@/components/Home/header.vue'
 import Pie from '@/components/Home/pie.vue'
 import EventsList from '@/components/Home/eventslist.vue'
+import {$Comm} from '@/services/comm.js';
 
 // Header.setUser("Arturo");
 export default ({
@@ -73,10 +74,15 @@ export default ({
   },
 mounted(){
     /** TODO. Obtener el usuario, status y Version y pasarlo a this.UserId */
-    // setInterval(() => {
-    //         this.UserId += (tcount)++;
-    //       }, 1000);
-
+    setInterval(() => {
+            // this.UserId += (tcount)++;
+            $Comm.stdgen_get((data)=>{
+              if (data.res) {
+                // TODO.. Estado General
+                console.log(data);
+              }              
+            });
+          }, 1000);
   }
 })
 </script>
