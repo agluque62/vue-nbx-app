@@ -10,7 +10,7 @@
                 :pagination="true"
                 :paginationPageSize="pagesize"
                 :columnDefs="columnDefs"
-                :rowData="rowData">
+                :rowData="lastEvents">
             </ag-grid-vue>
         </div>
     </div>
@@ -35,16 +35,6 @@ export default {
                 { headerName: 'Evento', field: 'ev', flex: 2},
                 { headerName: 'Parametros', field: 'par', flex:2}
             ],
-            rowData: [
-                // { id:1, fh:'10:02:33', ser: 'RdService', ev: 'Servicio no operativo',par: '0.03343' },
-                // { id:2, fh:'10:02:33', ser: 'CfgService', ev: 'Servicio no operativo',par: '0.03343' },
-                // { id:3, fh:'10:02:33', ser: 'TifxService', ev: 'Servicio no operativo',par: '0.03343' },
-                // { id:4, fh:'10:02:33', ser: 'PresService', ev: 'Servicio no operativo',par: '0.03343' },
-                // { id:5, fh:'10:02:33', ser: 'RdService', ev: 'Servicio Operativo',par: '0.03343' },
-                // { id:6, fh:'10:02:33', ser: 'TifxService', ev: 'Servicio Operativo',par: '0.03343' },
-                // { id:7, fh:'10:02:33', ser: 'CfgService', ev: 'Servicio Operativo',par: '0.03343' },
-                // { id:8, fh:'10:02:33', ser: 'PresService', ev: 'Servicio Operativo',par: '0.03343' }
-            ],
         };
     },
     computed:{
@@ -53,6 +43,10 @@ export default {
         },
         tableStyle(){
             return "width: 100%; height: " + this.tableSize +"px;";
+        },
+        lastEvents(){
+            console.log(this.$store.state.lastevents.li);
+            return this.$store.state.lastevents.li;
         }
     }
 }

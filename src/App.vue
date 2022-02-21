@@ -54,7 +54,7 @@ export default ({
   data(){
     return {
       UserId: "---",
-      Version:"???",
+      // Version:"???",
       Status:"---"
     }
   },
@@ -70,19 +70,31 @@ export default ({
     },
     GetUser(){
       return this.UserId;
+    },
+    Version(){
+      return this.$store.state.genstd.sw_version;
     }
   },
 mounted(){
     /** TODO. Obtener el usuario, status y Version y pasarlo a this.UserId */
     setInterval(() => {
-            // this.UserId += (tcount)++;
-            $Comm.stdgen_get((data)=>{
-              if (data.res) {
-                // TODO.. Estado General
-                console.log(data);
-              }              
-            });
-          }, 1000);
+      // this.UserId += (tcount)++;
+      $Comm.stdgen_get((data)=>{
+        if (data.res) {
+          // TODO.. Estado General
+            this.$store.commit('set_genstd', data.data);
+            console.log(data, this.$store.state.genstd);
+        }              
+      });
+      $Comm.inci_get((data)=>{
+        if (data.res){
+          if (data.data.hash != this.$store.state.lastevents.hash){
+            this.$store.commit('set_events', data.data);
+            console.log(data, this.$store.state.lastevents);
+          }
+        }
+      });
+    }, 2000);
   }
 })
 </script>
