@@ -11,7 +11,7 @@ const store = createStore({
     state () {
       return {
         genstd: {},
-        lastevents: []
+        lastevents: {}
       }
     },
     mutations: {

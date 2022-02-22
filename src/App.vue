@@ -43,6 +43,8 @@ import Pie from '@/components/Home/pie.vue'
 import EventsList from '@/components/Home/eventslist.vue'
 import {$Comm} from '@/services/comm.js';
 
+var tickTimer=undefined;
+
 // Header.setUser("Arturo");
 export default ({
   name: 'Home',
@@ -54,7 +56,6 @@ export default ({
   data(){
     return {
       UserId: "---",
-      // Version:"???",
       Status:"---"
     }
   },
@@ -77,7 +78,7 @@ export default ({
   },
 mounted(){
     /** TODO. Obtener el usuario, status y Version y pasarlo a this.UserId */
-    setInterval(() => {
+    tickTimer = setInterval(() => {
       // this.UserId += (tcount)++;
       $Comm.stdgen_get((data)=>{
         if (data.res) {
@@ -95,7 +96,11 @@ mounted(){
         }
       });
     }, 2000);
+  },
+  unmounted(){
+    clearInterval(tickTimer);
   }
+
 })
 </script>
 
